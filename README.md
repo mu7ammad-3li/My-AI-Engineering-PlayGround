@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 # My-AI-Engineering-PlayGround
 =======
-# Become an AI Engineer — Course Documentation
+## Become an AI Engineer — Course Documentation
 
 > **Course:** Become an AI Engineer  
 > **Instructor:** Ali Aminian  
@@ -56,4 +55,3 @@ A deep dive into the full LLM lifecycle, from raw data engineering through trans
 These are personal learning notes — a mix of lecture digests, curated resource summaries, and experiment logs. The goal is to build a reference I can actually use, not just a transcript of slides.
 
 If you're taking the same course, feel free to use this as a reference, but write your own experiments.
->>>>>>> d774c6b (Inital Commit)
