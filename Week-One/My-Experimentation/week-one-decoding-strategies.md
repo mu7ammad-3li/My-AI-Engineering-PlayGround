@@ -1,7 +1,6 @@
 # Experiment: Decoding Strategy Comparison
 **Model:** GPT-2 (pretrained, no fine-tuning)  
 **Week:** 1 — LLM Foundations  
-**Notebook:** [Open in Google Colab](#) ← *(add your Colab link here)*
 
 ---
 
