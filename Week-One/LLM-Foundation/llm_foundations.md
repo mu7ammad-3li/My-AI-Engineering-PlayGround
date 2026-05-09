@@ -25,6 +25,9 @@ Transforming noisy web scrapes into "model-ready" tokens requires a multi-stage 
 
 This refined text is then processed via **Tokenization**, specifically **Byte Pair Encoding (BPE)**. BPE acts as the critical bridge, decomposing text into sub-word units that are mapped to numerical vectors. This allows the model to process a finite vocabulary while still handling rare or complex word forms through sub-word combinations.
 
+![AI Data Refinement Pipeline](Illustrations/AI%20Data%20Refinement%20Pipeline.png)
+*Illustration: The full journey from raw web crawl to model-ready tokens.*
+
 ---
 
 ## 2. The Structural Blueprint: Transformer Architecture and Evolution
@@ -56,6 +59,9 @@ To maintain sequence integrity, the architecture utilizes **Positional Encoding*
 | **DeepSeek / Qwen** | Modern, high-efficiency architectures that have pushed the boundaries of mathematical reasoning and code generation. |
 | **Gemma** | A family of lightweight, open-weight models designed by Google for accessible, high-performance deployment. |
 
+![The Transformer Model Blueprint](Illustrations/The%20Transformer%20Model%20Blueprint.png)
+*Illustration: Internal architecture of the Transformer — encoder/decoder stacks, multi-head attention, and residual connections.*
+
 ---
 
 ## 3. The Mechanics of Thought: Inference and Generation Strategies
@@ -76,6 +82,21 @@ Sampling introduces randomness to mimic the "surprise" found in human language.
 | **Temperature** | Flattens or sharpens the probability distribution. Lowering (<1.0) makes the model more confident; raising it (>1.0) increases "risk-taking." | Adjusting "creativity" levels. |
 | **Top-K Sampling** | Filters the top K tokens and redistributes probability mass only among them. | Preventing "gibberish" by cutting the long tail. |
 | **Top-p (Nucleus)** | Dynamically selects the smallest set of tokens whose cumulative probability exceeds threshold p. | Creating fluid, human-like dialogue that adapts to the model's certainty. |
+
+![How Language Models Generate Text](Illustrations/How%20Language%20Models%20Generate%20Text.png)
+*Illustration: From probability distribution over vocabulary to final token selection — greedy, beam, and nucleus sampling compared.*
+
+### Hands-On: Decoding Strategies on GPT-2
+
+These strategies were tested experimentally on GPT-2 (pretrained, no fine-tuning) using a fixed prompt across all methods.
+
+**Key findings:**
+
+- Deterministic methods (greedy, beam search) fail by default on GPT-2 — both produce repetition loops. Tuning `no_repeat_ngram_size` and `repetition_penalty` recovers usable output, and parameter choice matters more than algorithm choice at this scale.
+- Stochastic methods (top-k, top-p) eliminate repetition entirely but introduce a grounding problem — GPT-2 has no instruction-following ability, so with enough sampling freedom the model drifts away from the prompt's context. This reveals the raw algorithmic behavior with no alignment safety net.
+- Top-p proved more adaptive than top-k — by dynamically sizing the candidate pool per step it balanced creativity and coherence better than a fixed k cutoff.
+
+→ [Full experiment — code, outputs, and observations](../My-Experimentation/week-one-decoding-strategies.md)
 
 ---
 
